@@ -1,0 +1,10 @@
+org 0
+  ld c, 0
+  in a, (c)
+  in d, (c)
+  in b, (c)
+summ:
+  adc a, d
+  out (c), a
+  djnz summ
+  halt

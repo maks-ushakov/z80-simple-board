@@ -1,0 +1,7 @@
+org 0
+ld c, 0
+in a, (c)
+in b, (c)
+add a, b
+out (c), a
+halt

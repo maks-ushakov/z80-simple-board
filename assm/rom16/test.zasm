@@ -1,0 +1,10 @@
+org 0
+ld c, 0
+ld b, 15
+loop:
+out (c), b
+djnz loop
+ld a, 55
+inc c
+out (c), a
+halt

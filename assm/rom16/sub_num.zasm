@@ -1,0 +1,7 @@
+org 0
+ld a, 100;
+ld b, 23;
+sub a, b;
+ld c, 0;
+out (c), a;
+halt
