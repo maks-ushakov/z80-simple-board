@@ -25,7 +25,6 @@ Connect Arduino Nano to Z80 CPU and use it as 16B memory.
 |  D7  |      D7        |   OUT     |
 | CLK  |      D13       |   OUT     |
 
-![Z80 Arduino Schema](./z80-arduino-test.png)
 
 ## Start
 
