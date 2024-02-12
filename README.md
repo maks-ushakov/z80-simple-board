@@ -1,4 +1,11 @@
-![Alt text](./z80_Arduino_Logo_min)
+<p align="center">
+    <img src="images/z80_Arduino_Logo_min.png" alt="z80 Arduino logo" />
+</p>
+<p align="center">
+    <p align="center">Simple board based on Z80 CPU and 'modern' Arduino board</p>
+    <p align="center"><a href="https://www.youtube.com/playlist?list=PLPrbpMWukRSoZ5geATjLQaH6BlcrjA2ah">Click here to have a look at the videos about variants</a></p>
+</p>
+
 
 # z80-simple-board
 
