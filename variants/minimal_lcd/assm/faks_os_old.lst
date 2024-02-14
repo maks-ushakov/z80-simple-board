@@ -1,0 +1,55 @@
+# File fake_os.zasm
+0000			org 0 
+0000			 
+0000			LCD_CMD: equ 0x00		; 
+0000			LCD_DATA: equ 0x01		; 
+0000			DATA_PORT: equ 0x08		; 
+0000			NEXT_LINE: equ 11000000b; move to second line position 0 
+0000			CLR: equ 000000001b	; 
+0000									 
+0000				;Startup procedures for LCD 16x02 
+0000			setup:					 
+0000 21 32 00		    ld hl,LCD_STARTUP	; Load address of startup array to HL 
+0003 06 03		    ld b, 3				; load nomber of command to B 
+0005			setLCD: 
+0005 7e			    ld a, (hl);			; Load command from address pointed by HL 
+0006 d3 00		    out (LCD_CMD), a	; Load command to LCD 
+0008 23			    inc hl				; HL++ 
+0009 10 fa		    djnz setLCD			; while (B-- != 0) repeat 
+000b			     
+000b					; Print Message on first Row 
+000b			firstRow: 
+000b 06 07		    ld b, 7				; Number of char's (string length) 
+000d 2a 35 00		    ld hl, (FIRST_ROW)	; load address of string to HL 
+0010			     
+0010			printFR: 
+0010 7e			    ld a, (hl)			; load char from addr pointed by HL 
+0011 d3 01		    out (LCD_DATA), a	; load char to LCD 
+0013 23			    inc hl				; Next char addr 
+0014 10 fa		    djnz printFR		; while (B-- != 0) repeat 
+0016 3e c0		    ld a, NEXT_LINE		; Move cursor to next line 
+0018 d3 00		    out (LCD_CMD), a    
+001a			     
+001a					; Main loop 
+001a			main: 
+001a db 08		    in a, (DATA_PORT)	; load data from input port 
+001c fe ff		    cp 0xFF				; if port is empty 
+001e ca 1a 00		    jp Z, main			; whait data 
+0021 fe 0a		    cp 0xA				; is there CR (\n) in data? 
+0023 c2 2d 00		    jp NZ, print		; if not print character 
+0026 3e 01		    ld a, CLR			; else clear display 
+0028 d3 00		    out (LCD_CMD), a	; 
+002a c3 0b 00		    jp firstRow			; and refill it 
+002d			     
+002d			print: 
+002d d3 01		    out (LCD_DATA), a 
+002f c3 1a 00		    jp main 
+0032			 
+0032			LCD_STARTUP: 
+0032 04			    db 00000100b    ; 
+0033 0f			    db 00001111b    ; Display -on, Cursor - on, Blink - on 
+0034 01				db CLR			; Clear display 
+0035			FIRST_ROW: 
+0035 ..			    db "Fake OS" 
+# End of file fake_os.zasm
+003c

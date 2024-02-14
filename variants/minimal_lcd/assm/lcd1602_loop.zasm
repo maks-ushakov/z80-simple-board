@@ -1,0 +1,22 @@
+org 0
+setup:
+ld hl,ctrl
+ld b, 3
+setLCD:
+ld a, (hl); clear
+out (0), a
+inc hl
+djnz setLCD
+inc c; set port 1/ LCD Data
+ld b, 3
+print:
+ld a, (hl)
+out (1), a
+inc hl
+djnz print
+halt
+
+ctrl:
+db 00000100b, 00001111b, 000000001b
+msg:
+dm "Hello!"
