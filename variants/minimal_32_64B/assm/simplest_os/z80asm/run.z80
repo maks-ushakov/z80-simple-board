@@ -1,0 +1,11 @@
+RST_00: jp start
+RST_00_rest: ds 5
+RST_08:	ds 8
+RST_10:	ds 8
+RST_18:	ds 8
+RST_20:	ds 8
+RST_28: ds 8
+RST_30: ds 8 
+
+	
+include "min_monitor.z80"

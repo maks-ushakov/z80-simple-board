@@ -1,6 +1,0 @@
-org 0
-ld a, 12;
-ld b, 100;
-add a, b;
-ld c, 0;
-out (c), a;

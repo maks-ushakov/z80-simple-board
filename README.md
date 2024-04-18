@@ -29,8 +29,9 @@ All files for each variant you can find in directory `variants`
 |--------------|-------|---------------------------------------------|-----|
 |    test      |   1B  | For testing CPU buses                       |  Y  |
 |  minimal_16B |   16B | Minimum to see how CPU work with Memory and IO| Y |
-|  minimal_32B |   32B | Minimum for learn assembly language           | N |
+|  minimal_32B |   32B | Minimum for learn assembly language           | Y |
 |  minimal_lcd |   64B | Minimun with text LCD16x2                     | N |
+|  minimal_1k  |   1KB | Minimal with commutator                       | N |
 |  half_32k    |  32KB | Half memory system                            | N |
 |  half_monitor|  32KB | Simple Monitor (BIOS)                         | N |
 |  half_ppa    |  32KB | Add Peripherial chips                         | N |
@@ -43,6 +44,7 @@ Each variant has own directories:
 
 - `arduino` - for arduino scketches (with preloaded Z80 binary)
 - `Assm` - assembly files and binares
+- `doc` - some useful instructions
 
 Also each project has Kicad schematics and Readme with requirements for that variant.
 
@@ -66,44 +68,48 @@ Load sketch to arduino
 ## How to make z80 binary from assebler source
 
 You can use any file extensions for sourse and binary files.  Common extensions for sourses are `.s`, '.asm', 'z80', for binary are `.bin` or none. 
-I use `.zasm` for assembly source and `z80` for binary.
+I use `.z80` for assembly source and `bin` for binary.
 
 __If you have z80asm__
 
 ```
-z80asm --output=<file_name>.z80 <file_name>.zasm
+z80asm --output=<file_name>.bin <file_name>.z80
 ```
 
 __If you use VASM__
 ```
-//TODO
+vasmz80_oldstyle -Fbin -o <file_name>.bin -Lall <file_name>.z80
 ```
+
+```
+vasmz80_std -Fbin -o <file_name>.bin -Lall <file_name>.z80
+```
+
+__Online__
+
+By asm80 or ORG IDE
 
 ## Binary to readable table
 
 ```
-xxd -g 1 <file_name>.z80
+xxd -g 1 <file_name>.bin
 ```
 
 ## Binary to arduino array
 
 ```
-xxd -i <file_name>.z80
+xxd -i <file_name>.bin
 ```
-
-## Load binary with XMODEM protocol
-
-// TODO
 
 ## Serial terminals
 Minicom
 ```
-minicom -b 115200 -D /dev/ttyUSB0
+minicom -b 9600 -D /dev/ttyUSB0
 ```
 
 Screen
 ```
-screen /dev/ttyUSB0 115200
+screen /dev/ttyUSB0 9600
 ```
 
 If you do not have access to ttyUSB0  (Arduino or terminal app still connect to /dev/ttyUSB0)
@@ -112,8 +118,29 @@ If you do not have access to ttyUSB0  (Arduino or terminal app still connect to 
 fuser -k /dev/ttyUSB0
 ```
 
+## Load binary manually by console
+
+use command `P` or `M` to load values started by address
+```
+> P <addr> <data> <data> <data> ...
+```
+```
+> m <addr> <data> <data> <data> ...
+```
+
+to check memory use command `D`
+
+```
+> D <start_addr> <end_addr>
+```
+
+## Load binary with XMODEM protocol
+
+// TODO
+
 ## Steps
-Test. First run. 
+Test. First run.
+
    Arduino Nano as Clock generator and Buffer.
 
    Resources: `variants/test`
@@ -153,6 +180,10 @@ __Links__:
 [z80 info](http://www.z80.info/) - a lot of information about z80, his perioferial chips instruction sets and tutorials
 
 [VASM](http://www.compilers.de/vasm.html) - portable assembler for different CPUs
+
+[ORG IDE](https://clrhome.org/asm/) - online z80 IDE
+
+[asm80](https://www.asm80.com/) - online IDE and emulator
 
 
 

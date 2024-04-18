@@ -1,0 +1,96 @@
+; byte, int8_t, uint8_t, unsigned char
+; byte a;
+a:
+    ds 1; // reserv 1 byte
+;char ch = 'A';
+ch:
+    db 'A'; // reserv 1 byte and set value 0x40 (ASCII A)
+
+; int, int16_t
+; int counter = 0;
+counter: 
+    dw 0; // reserv 2 byte, and set their value
+
+;word, uint16_t
+; word someWord
+someWord:
+    ds 2; // reserv 2 byte
+
+;long
+; long previousTime;
+previousTime:
+    ds 4; // reserv 4 bytes
+
+
+;float (32 bit, 4 bytes)
+; format IEEE 754 (https://en.wikipedia.org/wiki/IEEE_754)
+; // https://uk.wikipedia.org/wiki/%D0%A7%D0%B8%D1%81%D0%BB%D0%BE_%D0%B7_%D1%80%D1%83%D1%85%D0%BE%D0%BC%D0%BE%D1%8E_%D0%BA%D0%BE%D0%BC%D0%BE%D1%8E
+;https://trekhleb.dev/blog/2021/binary-floating-point/
+;https://float.exposed/b0x3f80
+; [1bit sign][8bit exp][23bit mantisa]
+; float var;
+var:
+    ds 4;
+
+;double (64bit)
+; IEEE 754 (https://float.exposed/b0x3e80)
+; [1bit sign][11bit exp][52bit mantisa]
+; double dValue;
+dValue:
+    ds 8; // reserv 8 bit
+
+; array
+; set of bytes
+; uint8_t values[5] = {1, 2, 3, 4, 15};
+values:
+    db 1, 2, 3, 4, 0xf;
+;int wales [5] = {1, 2, 3, 0xff01, 0x0abc};
+wales:
+    dw 1, 2, 3, 0xff01, 0x0abc
+; int leds[4];
+leds:
+    ds: 8 ; // 4 x 2 byte for int
+
+
+; string
+; set of chars(bytes} with null-terminator
+; string greeting = "Hello z80!"
+greeting:
+    dm "Hello z80!"
+    db '\0'
+
+ 
+;bool, boolean (1 byte)
+; bool isValid = true;
+; boolean ledStatus = false
+isValid:
+    db 0xFF; // true
+ledStatus:
+    db 0x00; // false
+
+;ownfloat
+; [1bit sign][7bit exp][8bit mantisa]
+
+;half
+; [1bit sign][5bit exp][10bit mantisa]
+
+
+// binary floats
+https://matloka.com/blog/floating-point-101
+
+
+// mini float
+// https://en.wikipedia.org/wiki/Minifloat
+// https://uk.wikipedia.org/wiki/%D0%A7%D0%B8%D1%81%D0%BB%D0%BE_%D0%BF%D0%BE%D0%BB%D0%BE%D0%B2%D0%B8%D0%BD%D0%BD%D0%BE%D1%97_%D1%82%D0%BE%D1%87%D0%BD%D0%BE%D1%81%D1%82%D1%96
+
+// float numbers math
+// https://en.wikipedia.org/wiki/Floating-point_arithmetic
+
+// fixed point
+// https://en.wikipedia.org/wiki/Fixed-point_arithmetic
+
+// float
+// https://matloka.com/blog/floating-point-101
+
+
+

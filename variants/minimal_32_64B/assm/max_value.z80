@@ -1,0 +1,25 @@
+; Max value
+max:
+    ld hl, arr_val
+    ld a, (arr_size)
+    ld b, a
+    dec b
+    ld d, (hl)
+loop:
+    inc hl
+    ld a, (hl)
+    cp d
+    jp M, next
+    ld d, a
+next:
+    djnz loop
+    ld a, d
+    ld (result), a
+    halt
+    nop
+result:
+    ds  1
+arr_size:
+    db 3
+arr_val:
+    db 1, 125, 87
