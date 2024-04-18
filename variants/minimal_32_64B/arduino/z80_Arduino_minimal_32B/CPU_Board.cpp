@@ -33,8 +33,6 @@ void CPUBoard::init() {
 
 void CPUBoard::tick(unsigned long currentMillis) {
     if(currentMillis - previousMillis > _interval) {
-    // save the last time you toggle the CLK_PIN 
-    previousMillis = currentMillis;   
     // if the CLK_PIN is off turn it on and vice-versa:
     if (_clk_State == LOW)
       _clk_State = HIGH;
@@ -42,6 +40,8 @@ void CPUBoard::tick(unsigned long currentMillis) {
       _clk_State = LOW;
     // set the CLK_PIN with the clk_CPU_State of the variable:
     digitalWrite(CLK_PIN, _clk_State);
+    // save the last time you toggle the CLK_PIN 
+    previousMillis = currentMillis; 
   }
 };
 

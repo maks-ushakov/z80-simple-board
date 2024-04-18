@@ -12,6 +12,19 @@
 #define IN_A2 A4
 #define IN_A3 A5
 
+#define F_HIGHT 1
+#define F_1M    1
+#define F_500K  2
+#define F_250K  4
+#define F_100K  10
+#define F_50K   20
+#define F_1K    1000
+#define F_500   2000
+#define F_250   4000
+#define F_100   10000
+#define F_10    100000
+#define F_1     1000000
+
 class CPUBoard 
 {
   public:
@@ -23,6 +36,7 @@ class CPUBoard
     uint8_t getData();
     void setAsDataInput();
     void setClock(long);
+
   private:
     uint8_t control_pins[8], addr_pins[16];
     long _interval = 100;           // interval at which to change CLK state (milliseconds)
