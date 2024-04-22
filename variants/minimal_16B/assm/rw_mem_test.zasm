@@ -1,7 +1,0 @@
-org 0
-ld a, 0x55;
-ld (0xE), a;
-ld c, 0;
-out (c), a;
-in a, (c);
-halt

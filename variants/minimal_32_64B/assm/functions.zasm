@@ -1,0 +1,33 @@
+;Math
+
+;abs()
+; Calculates the absolute value of a number.
+; value in D
+; return in A
+abs:
+	
+
+;constrain()
+;map()
+;max()
+;min()
+;pow()
+;sq()
+;sqrt()
+
+;Trigonomentry (tables)
+;cos()
+
+;sin()
+; sin127x6(X) = 127 * sin(PI * X  / 30)
+
+;tan()
+
+;//Random Numbers
+random()
+randomSeed()
+
+// SDCC convenctions
+// https://gist.github.com/Konamiman/af5645b9998c802753023cf1be8a2970
+
+// https://github.com/z88dk/z88dk?tab=readme-ov-file

@@ -1,0 +1,22 @@
+org 0
+
+start:
+    ld a, (FIRST)
+    ld l, a
+    ld a, (FIRST+1)
+    ld h, a
+    ld a, (SECOND)
+    ld e, a
+    ld a, (SECOND+1)
+    ld d, a
+    add hl, de
+    ld (RESULT), hl
+    halt
+    nop
+    nop
+    nop
+    
+
+FIRST: dw 514
+SECOND: dw 300
+RESULT: ds 2

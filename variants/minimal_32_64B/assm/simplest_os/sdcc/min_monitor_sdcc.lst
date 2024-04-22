@@ -1,0 +1,277 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 4.0.0 #11528 (Linux)
+                              4 ;--------------------------------------------------------
+o  0000                       5 	MODULE min_monitor_sdcc
+                              6 	.optsdcc -mz80
+                              7 	; Generated using the z80asm/z88 tokens.
+o  0000                       8 	XREF __muluchar_rrx_s
+o  0000                       9 	XREF __mulschar_rrx_s
+o  0000                      10 	XREF __mulint_rrx_s
+o  0000                      11 	XREF __mullong_rrx_s
+o  0000                      12 	XREF __divuchar_rrx_s
+o  0000                      13 	XREF __divschar_rrx_s
+o  0000                      14 	XREF __divsint_rrx_s
+o  0000                      15 	XREF __divuint_rrx_s
+o  0000                      16 	XREF __divulong_rrx_s
+o  0000                      17 	XREF __divslong_rrx_s
+o  0000                      18 	XREF __rrulong_rrx_s
+o  0000                      19 	XREF __rrslong_rrx_s
+o  0000                      20 	XREF __rlulong_rrx_s
+o  0000                      21 	XREF __rlslong_rrx_s
+                             22 
+                             23 ;--------------------------------------------------------
+                             24 ; Public variables in this module
+                             25 ;--------------------------------------------------------
+o  0000                      26 	XDEF _main
+o  0000                      27 	XDEF _execute
+o  0000                      28 	XDEF _setMemoryValue
+o  0000                      29 	XDEF _getMemoryValue
+                             30 ;--------------------------------------------------------
+                             31 ; Externals used
+                             32 ;--------------------------------------------------------
+                             33 ;--------------------------------------------------------
+                             34 ; special function registers
+                             35 ;--------------------------------------------------------
+                     0000    36 _D_ADDR_H	=	0x0000
+                     0001    37 _D_ADDR_L	=	0x0001
+                     0002    38 _D_DATA	=	0x0002
+                     0003    39 _KBD_PORT	=	0x0003
+                             40 ;--------------------------------------------------------
+                             41 ; ram data
+                             42 ;--------------------------------------------------------
+                             43 	; Aread BSS
+                             44 ;--------------------------------------------------------
+                             45 ; ram data
+                             46 ;--------------------------------------------------------
+                             47 	; Area  INITIALIZED
+                             48 ;--------------------------------------------------------
+                             49 ; absolute external ram data
+                             50 ;--------------------------------------------------------
+                             51 	; Area  DABS (ABS)
+                             52 ;--------------------------------------------------------
+                             53 ; global & static initialisations
+                             54 ;--------------------------------------------------------
+                             55 	; Area  HOME
+                             56 	; Area  GSINIT
+                             57 	; Area  GSFINAL
+                             58 	; Area  GSINIT
+                             59 ;--------------------------------------------------------
+                             60 ; Home
+                             61 ;--------------------------------------------------------
+                             62 	; Area HOME
+                             63 	; Area HOME
+                             64 ;--------------------------------------------------------
+                             65 ; code
+                             66 ;--------------------------------------------------------
+                             67 	; Area CODE
+                             68 ;min_monitor_sdcc.c:21: char getMemoryValue(unsigned int addr) {
+                             69 ;	---------------------------------
+                             70 ; Function getMemoryValue
+                             71 ; ---------------------------------
+q                            72 ._getMemoryValue
+                             73 ;min_monitor_sdcc.c:22: return 0;
+a  0000               [ 4]   74 	ld	l, $00
+                             75 
+q                            76 .l_getMemoryValue00101
+                             77 ;min_monitor_sdcc.c:23: }
+   0000 C9            [10]   78 	ret
+                             79 ;min_monitor_sdcc.c:24: void setMemoryValue(unsigned int addr, char data) {
+                             80 ;	---------------------------------
+                             81 ; Function setMemoryValue
+                             82 ; ---------------------------------
+q                            83 ._setMemoryValue
+                             84 ;min_monitor_sdcc.c:26: }
+                             85 
+q                            86 .l_setMemoryValue00101
+   0001 C9            [10]   87 	ret
+                             88 ;min_monitor_sdcc.c:27: void execute(unsigned int addr) {
+                             89 ;	---------------------------------
+                             90 ; Function execute
+                             91 ; ---------------------------------
+q                            92 ._execute
+                             93 ;min_monitor_sdcc.c:29: }
+                             94 
+q                            95 .l_execute00101
+   0002 C9            [10]   96 	ret
+                             97 ;min_monitor_sdcc.c:31: void main() {
+                             98 ;	---------------------------------
+                             99 ; Function main
+                            100 ; ---------------------------------
+q                           101 ._main
+   0003 DD E5         [15]  102 	push	ix
+a  0005               [15]  103 	ld	ix,0
+   0005 DD 39         [15]  104 	add	ix,sp
+   0007 F5            [11]  105 	push	af
+                            106 ;min_monitor_sdcc.c:32: unsigned int address = FIRST_RAM;
+a  0008               [11]  107 	ld	bc, $0C00
+                            108 ;min_monitor_sdcc.c:33: while(1) {
+                            109 
+q                           110 .l_main00118
+                            111 ;min_monitor_sdcc.c:34: char currentData = getMemoryValue(address);
+   0008 C5            [11]  112 	push	bc
+   0009 C5            [11]  113 	push	bc
+   000A CDr00r00      [17]  114 	call	_getMemoryValue
+   000D F1            [10]  115 	pop	af
+   000E 7D            [ 4]  116 	ld	a, l
+   000F C1            [10]  117 	pop	bc
+   0010 5F            [ 4]  118 	ld	e, a
+                            119 ;min_monitor_sdcc.c:36: outData = address >> 8;
+   0011 78            [ 4]  120 	ld	a, b
+a  0012               [ 4]  121 	ld	l, $00
+   0012 D3 00         [11]  122 	out	(_D_ADDR_H), a
+                            123 ;min_monitor_sdcc.c:38: outData = address;
+   0014 79            [ 4]  124 	ld	a, c
+   0015 D3 01         [11]  125 	out	(_D_ADDR_L), a
+                            126 ;min_monitor_sdcc.c:41: D_DATA = outData;
+   0017 7B            [ 4]  127 	ld	a, e
+   0018 D3 02         [11]  128 	out	(_D_DATA), a
+                            129 ;min_monitor_sdcc.c:42: while(1) {
+                            130 
+q                           131 .l_main00115
+                            132 ;min_monitor_sdcc.c:43: char key = NOT_PRESSED;
+a  001A               [11]  133 	ld	d, $FF
+                            134 ;min_monitor_sdcc.c:44: while (key == NOT_PRESSED) {
+                            135 
+q                           136 .l_main00101
+   001A 7A            [ 4]  137 	ld	a, d
+   001B 3C            [ 4]  138 	inc	a
+   001C C2r00r00      [10]  139 	jp	NZ,l_main00167
+   001F C3r00r00      [10]  140 	jp	l_main00168
+                            141 
+q                           142 .l_main00167
+   0022 C3r00r00      [10]  143 	jp	l_main00103
+                            144 
+q                           145 .l_main00168
+                            146 ;min_monitor_sdcc.c:45: key = KBD_PORT;
+   0025 DB 03         [11]  147 	in	a, (_KBD_PORT)
+   0027 57            [ 4]  148 	ld	d, a
+   0028 C3r00r00      [10]  149 	jp	l_main00101
+                            150 
+q                           151 .l_main00103
+                            152 ;min_monitor_sdcc.c:47: if (key < 0x10) {
+   002B 7A            [ 4]  153 	ld	a, d
+a  002C               [ 4]  154 	sub	a, $10
+   002C D2r00r00      [10]  155 	jp	NC, l_main00105
+                            156 ;min_monitor_sdcc.c:48: currentData = currentData * 0x10 + key;
+   002F 7B            [ 4]  157 	ld	a, e
+   0030 87            [ 4]  158 	add	a, a
+   0031 87            [ 4]  159 	add	a, a
+   0032 87            [ 4]  160 	add	a, a
+   0033 87            [ 4]  161 	add	a, a
+   0034 5A            [ 4]  162 	ld	e, d
+   0035 83            [ 4]  163 	add	a, e
+                            164 ;min_monitor_sdcc.c:49: D_DATA = currentData;
+   0036 5F            [ 4]  165 	ld	e, a
+   0037 D3 02         [11]  166 	out	(_D_DATA), a
+                            167 
+q                           168 .l_main00105
+                            169 ;min_monitor_sdcc.c:53: address = address & 0x00ff + currentData * 0x100;
+q  0039                     170 	ld	(ix-2), e
+   0039 AF            [ 4]  171 	xor	a, a
+q  003A                     172 	ld	(ix-1), a
+                            173 ;min_monitor_sdcc.c:52: if (key == C_SETHB) {
+   003A 7A            [ 4]  174 	ld	a, d
+a  003B               [ 4]  175 	sub	a, $10
+   003B C2r00r00      [10]  176 	jp	NZ,l_main00169
+   003E C3r00r00      [10]  177 	jp	l_main00170
+                            178 
+q                           179 .l_main00169
+   0041 C3r00r00      [10]  180 	jp	l_main00107
+                            181 
+q                           182 .l_main00170
+                            183 ;min_monitor_sdcc.c:53: address = address & 0x00ff + currentData * 0x100;
+q  0044                     184 	ld	d, (ix-2)
+a  0044               [10]  185 	ld	e, $00
+a  0044               [10]  186 	ld	hl, $00FF
+   0044 19            [11]  187 	add	hl, de
+   0045 7D            [ 4]  188 	ld	a, l
+   0046 A1            [ 4]  189 	and	a, c
+   0047 4F            [ 4]  190 	ld	c, a
+   0048 7C            [ 4]  191 	ld	a, h
+   0049 A0            [ 4]  192 	and	a, b
+   004A 47            [ 4]  193 	ld	b, a
+                            194 ;min_monitor_sdcc.c:54: break;
+   004B C3r00r00      [10]  195 	jp	l_main00118
+                            196 
+q                           197 .l_main00107
+                            198 ;min_monitor_sdcc.c:57: if (key == C_SETLB) {
+   004E 7A            [ 4]  199 	ld	a, d
+a  004F               [ 4]  200 	sub	a, $11
+   004F C2r00r00      [10]  201 	jp	NZ,l_main00171
+   0052 C3r00r00      [10]  202 	jp	l_main00172
+                            203 
+q                           204 .l_main00171
+   0055 C3r00r00      [10]  205 	jp	l_main00109
+                            206 
+q                           207 .l_main00172
+                            208 ;min_monitor_sdcc.c:58: address = address & 0xff00 + currentData;
+q  0058                     209 	ld	e, (ix-2)
+q  0058                     210 	ld	l, (ix-1)
+   0058 7D            [ 4]  211 	ld	a, l
+   0059 3D            [ 4]  212 	dec	a
+   005A F5            [11]  213 	push	af
+   005B 79            [ 4]  214 	ld	a, c
+   005C A3            [ 4]  215 	and	a, e
+   005D 4F            [ 4]  216 	ld	c, a
+   005E F1            [10]  217 	pop	af
+   005F A0            [ 4]  218 	and	a, b
+   0060 47            [ 4]  219 	ld	b, a
+                            220 ;min_monitor_sdcc.c:59: break;
+   0061 C3r00r00      [10]  221 	jp	l_main00118
+                            222 
+q                           223 .l_main00109
+                            224 ;min_monitor_sdcc.c:62: if (key == C_SETDAT) {
+   0064 7A            [ 4]  225 	ld	a, d
+a  0065               [ 4]  226 	sub	a, $12
+   0065 C2r00r00      [10]  227 	jp	NZ,l_main00173
+   0068 C3r00r00      [10]  228 	jp	l_main00174
+                            229 
+q                           230 .l_main00173
+   006B C3r00r00      [10]  231 	jp	l_main00111
+                            232 
+q                           233 .l_main00174
+                            234 ;min_monitor_sdcc.c:63: setMemoryValue(address, currentData);
+   006E C5            [11]  235 	push	bc
+   006F 7B            [ 4]  236 	ld	a, e
+   0070 F5            [11]  237 	push	af
+   0071 33            [ 6]  238 	inc	sp
+   0072 C5            [11]  239 	push	bc
+   0073 CDr00r00      [17]  240 	call	_setMemoryValue
+   0076 F1            [10]  241 	pop	af
+   0077 33            [ 6]  242 	inc	sp
+   0078 C1            [10]  243 	pop	bc
+                            244 ;min_monitor_sdcc.c:64: address++;
+   0079 03            [ 6]  245 	inc	bc
+                            246 ;min_monitor_sdcc.c:65: break;
+   007A C3r00r00      [10]  247 	jp	l_main00118
+                            248 
+q                           249 .l_main00111
+                            250 ;min_monitor_sdcc.c:68: if (key == C_RUN) {
+   007D 7A            [ 4]  251 	ld	a, d
+a  007E               [ 4]  252 	sub	a, $13
+   007E C2r00r00      [10]  253 	jp	NZ,l_main00175
+   0081 C3r00r00      [10]  254 	jp	l_main00176
+                            255 
+q                           256 .l_main00175
+   0084 C3r00r00      [10]  257 	jp	l_main00115
+                            258 
+q                           259 .l_main00176
+                            260 ;min_monitor_sdcc.c:69: execute(address);
+   0087 C5            [11]  261 	push	bc
+   0088 D5            [11]  262 	push	de
+   0089 C5            [11]  263 	push	bc
+   008A CDr00r00      [17]  264 	call	_execute
+   008D F1            [10]  265 	pop	af
+   008E D1            [10]  266 	pop	de
+   008F C1            [10]  267 	pop	bc
+   0090 C3r00r00      [10]  268 	jp	l_main00115
+                            269 
+q                           270 .l_main00120
+                            271 ;min_monitor_sdcc.c:73: }
+   0093 DD F9         [10]  272 	ld	sp, ix
+   0095 DD E1         [14]  273 	pop	ix
+   0097 C9            [10]  274 	ret
+                            275 	; Area CODE
+                            276 	; Area  INITIALIZER
+                            277 	; Area  CABS (ABS)
