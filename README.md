@@ -30,12 +30,21 @@ All files for each variant you can find in directory `variants`
 |    test      |   1B  | For testing CPU buses                       |  Y  |
 |  minimal_16B |   16B | Minimum to see how CPU work with Memory and IO| Y |
 |  minimal_32B |   32B | Minimum for learn assembly language           | Y |
-|  minimal_lcd |   64B | Minimun with text LCD16x2                     | N |
-|  minimal_1k  |   1KB | Minimal with commutator                       | N |
-|  half_32k    |  32KB | Half memory system                            | N |
-|  half_monitor|  32KB | Simple Monitor (BIOS)                         | N |
-|  half_ppa    |  32KB | Add Peripherial chips                         | N |
-|  half_int    |  32KB | For learning interrupts                       | N |
+|  multiplex   |   2KB | Minimal with commutator                       | N |
+|  shift_32k   |  32KB | Half memory system (shift registers)          | N |
+|  shift_64k   |  64KB | Half memory system (shift registers)          | N |
+
+
+
+Variant difference
+
+| Option | test | minimal_16B| minimal_32B| multiplex|  shift  |
+|--------|------|------------|------------|----------|---------|
+| Memory | 0B   | 16B        | 32B, 64B   | 1K, 2K   | 32K,64K |
+| Mem type | none    | mocked| mocked    | mocked   | real |
+|IO      | none | mocked |  mocked | real | real|
+|CPU Freq| 20Hz| 20Hz| 100Hz| 100Hz| 1Mhz |
+|add. chips| - | - | - | cd4017 | 74htc595, 8286, 8282|
 
 
 ## Structure
@@ -61,13 +70,14 @@ Choose variant you want to use.
 
 Load Arduino sketch
 
+Use Variant readme to change preloaded memory.
 Change Memory array with z80 C-style-array code you want to be loaded to z80 memory
 
 Load sketch to arduino
 
 ## How to make z80 binary from assebler source
 
-You can use any file extensions for sourse and binary files.  Common extensions for sourses are `.s`, '.asm', 'z80', for binary are `.bin` or none. 
+You can use any file extensions for sourse and binary files.  Common extensions for sourses are `.s`, '.asm', 'z80', for binary are `.bin` or none, `lst` for listing files.
 I use `.z80` for assembly source and `bin` for binary.
 
 __If you have z80asm__
@@ -78,11 +88,11 @@ z80asm --output=<file_name>.bin <file_name>.z80
 
 __If you use VASM__
 ```
-vasmz80_oldstyle -Fbin -o <file_name>.bin -Lall <file_name>.z80
+vasmz80_oldstyle -Fbin -o <file_name>.bin -Lall -L <file_name>.lst <file_name>.z80
 ```
 
 ```
-vasmz80_std -Fbin -o <file_name>.bin -Lall <file_name>.z80
+vasmz80_std -Fbin -o <file_name>.bin -Lall -L <file_name>.lst <file_name>.z80
 ```
 
 __Online__
@@ -151,11 +161,19 @@ Arduino as Memory and IO port.
 
    Resources:`variants/minimal_16B`
 
+
+Arduino as Memory loader and simple OS
+    Minimal System, 32B memory. Arduino has command line interface to load code
+
+    Resources: `variants/minimal_32_64B`
+
 ## TODO
 
-- More memory 32B or 64B. Arduino Console (in progress)
+- More memory 32B or 64B. Arduino Console
 
 - LCD as IO port. Bus Buffering (in progress)
+
+- Mocked memory with multiplexer/commutator (in progress)
 
 - 32k RAM chip. DMA. CPU give acces to bus (featured)
 
