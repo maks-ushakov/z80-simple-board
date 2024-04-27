@@ -1,0 +1,15 @@
+.binfrom 0
+.binto 0fh
+; Hello world z80+Arduino minimal style
+org 0
+
+start:
+    ld A, 'H'
+    ld (display1), A ; Save into display area 
+    ld A, 'i'
+    ld (display2), A ; Save into display area 
+    halt
+
+org 0eh
+display1: ds 1
+display2: ds 1

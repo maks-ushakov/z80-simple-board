@@ -1,0 +1,23 @@
+; Lucy went to the grocery store. She bought 12
+; packs of cookies and 16 packs of noodles. How
+; many packs of groceries did she buy in all?
+.binfrom 0
+.binto 0fh
+
+org 0
+
+cookies: equ 12 ; #define cookies 12
+noodles: equ 16 ; #define noodles 16
+
+start:
+    xor A; reset cart
+    ld C, cookies
+    add A, C
+    ld B, noodles
+    add A, B
+    ld (display), A ; print result
+    halt
+
+
+org 0eh
+display: ds 1

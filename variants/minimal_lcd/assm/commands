@@ -1,2 +1,0 @@
-z80asm --output=fake_os.bin --list=fake_os.lst --label=fake_os.lbl fake_os.zasm
-

@@ -1,0 +1,27 @@
+0000                             ; Lucy went to the grocery store. She bought 12
+0000                             ; packs of cookies and 16 packs of noodles. How
+0000                             ; many packs of groceries did she buy in all?
+0000                          .BINFROM   0   
+0000                          .BINTO   0fh   
+0000                          .ORG   0   
+0000                COOKIES:   EQU   12   ; #define cookies 12
+0000                NOODLES:   EQU   16   ; #define noodles 16
+0000                START:       
+0000   AF                     XOR   A   ; reset cart
+0001   0E 0C                  LD   C,cookies   
+0003   81                     ADD   A,C   
+0004   06 10                  LD   B,noodles   
+0006   80                     ADD   A,B   
+0007   32 0E 00               LD   (display),A   ; print result
+000A   76                     HALT      
+000E                          .ORG   0eh   
+000E                DISPLAY:   DS   1   
+
+
+COOKIES:            000C DEFINED AT LINE 9
+                    > USED AT LINE 14
+NOODLES:            0010 DEFINED AT LINE 10
+                    > USED AT LINE 16
+START:              0000 DEFINED AT LINE 12
+DISPLAY:            000E DEFINED AT LINE 23
+                    > USED AT LINE 18

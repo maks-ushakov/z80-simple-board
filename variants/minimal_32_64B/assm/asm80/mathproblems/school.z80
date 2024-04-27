@@ -1,0 +1,15 @@
+; In a school, there are 542 girls and 387 boys.
+; How many pupils are there in that school?
+
+            .ORG    0 
+
+START:               
+            LD      hl,(girls)      ; int girls = 542
+            LD      bc,(boys)       ; int boys = 387
+            ADD     hl,bc           ; pupils = girls + boys
+            LD      (pupils),hl     ; print(pupils)
+            HALT     
+
+GIRLS:      DW      542 
+BOYS:       DW      387 
+PUPILS:     DS      2 ; reserv 2 byte for result

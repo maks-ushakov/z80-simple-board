@@ -1,0 +1,16 @@
+# File hello_world.z80
+0000			; Hello world z80+Arduino minimal style 
+0000			org 0 
+0000			 
+0000			start: 
+0000 3e 48		    ld A, 'H' 
+0002 32 0e 00		    ld (display1), A ; Save into display area  
+0005 3e 69		    ld A, 'i' 
+0007 32 0f 00		    ld (display2), A ; Save into display area  
+000a 76			    halt 
+000b			 
+000b			org 0eh 
+000e 00...		display1: ds 1 
+000f 00...		display2: ds 1 
+# End of file hello_world.z80
+0010

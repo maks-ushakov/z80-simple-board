@@ -1,0 +1,20 @@
+; Cade had 87 marbles. He gave 18 to Dylan and
+; 6 to Sam. How many does he have left?
+.binfrom 0
+.binto 0fh
+
+org 0
+
+Cade: equ 87
+Dylan: equ 18
+Sam: equ 6
+
+start:
+    ld A, Cade
+    sub Dylan
+    sub Sam
+    ld (display), A
+    halt
+
+org 0eh
+display: ds 1
