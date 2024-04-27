@@ -1,0 +1,15 @@
+; Hello world z80+Arduino minimal style
+START_ADDR: equ 0
+
+;org START_ADDR + 0
+
+start:
+    ld A, 'H'
+    ld (display1), A ; Save into display area 
+    ld A, 'i'
+    ld (display2), A ; Save into display area 
+    halt
+
+;org START_ADDR + 00eh
+display1: ds 1
+display2: ds 1

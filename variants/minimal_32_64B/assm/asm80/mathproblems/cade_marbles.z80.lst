@@ -1,0 +1,27 @@
+0000                             ; Cade had 87 marbles. He gave 18 to Dylan and
+0000                             ; 6 to Sam. How many does he have left?
+0000                          .BINFROM   0   
+0000                          .BINTO   0fh   
+0000                          .ORG   0   
+0000                CADE:     EQU   87   
+0000                DYLAN:    EQU   18   
+0000                SAM:      EQU   6   
+0000                START:       
+0000   3E 57                  LD   A,Cade   
+0002   D6 12                  SUB   Dylan   
+0004   D6 06                  SUB   Sam   
+0006   32 0E 00               LD   (display),A   
+0009   76                     HALT      
+000E                          .ORG   0eh   
+000E                DISPLAY:   DS   1   
+
+
+CADE:               0057 DEFINED AT LINE 8
+                    > USED AT LINE 13
+DYLAN:              0012 DEFINED AT LINE 9
+                    > USED AT LINE 14
+SAM:                0006 DEFINED AT LINE 10
+                    > USED AT LINE 15
+START:              0000 DEFINED AT LINE 12
+DISPLAY:            000E DEFINED AT LINE 20
+                    > USED AT LINE 16

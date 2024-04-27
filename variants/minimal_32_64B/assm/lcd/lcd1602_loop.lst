@@ -1,0 +1,25 @@
+# File lcd1602_loop.zasm
+0000			org 0 
+0000			setup: 
+0000 21 15 00		ld hl,ctrl 
+0003 06 03		ld b, 3 
+0005			setLCD: 
+0005 7e			ld a, (hl); clear 
+0006 d3 00		out (0), a 
+0008 23			inc hl 
+0009 10 fa		djnz setLCD 
+000b 0c			inc c; set port 1/ LCD Data 
+000c 06 03		ld b, 3 
+000e			print: 
+000e 7e			ld a, (hl) 
+000f d3 01		out (1), a 
+0011 23			inc hl 
+0012 10 fa		djnz print 
+0014 76			halt 
+0015			 
+0015			ctrl: 
+0015 04 0f 01		db 00000100b, 00001111b, 000000001b 
+0018			msg: 
+0018 ..			dm "Hello!" 
+# End of file lcd1602_loop.zasm
+001e

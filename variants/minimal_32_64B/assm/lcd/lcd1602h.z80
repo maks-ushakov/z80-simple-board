@@ -1,0 +1,25 @@
+	; LCD Commands
+LCD_EMODE: 		equ 00000100b	; Entry mode set
+		; Function set
+LCD_F_8b_1L_F8:  	equ 00110000b	; 8-bit mode, 1 display line, font 5x8 dots
+LCD_F_8b_2L_F8:  	equ 00111000b	; 8-bit mode, 2 display lines, font 5x8 dots
+LCD_F_8b_1L_F10:	equ 00110100b	; 8-bit mode, 1 line, font 5x10
+LCD_F_8b_2L_F10:	equ 00111100b	; 8-bit mode, 2 lines, font 5x10
+LCD_F_4b_1l_F8:		equ 00100000b	; 4-bit mode, 1 line, font 5x8
+LCD_F_4b_2l_F8:		equ 00101000b	; 4-bit mode, 2 lines, font 5x8
+LCD_F_4b_1l_F10:	equ 00100100b	; 4-bit mode, 2 lines, font 5x10
+LCD_F_4b_2l_F10:	equ 00101100b	; 4-bit mode, 2 lines, font 5x10
+		;display on/off controld
+LCD_ON_D:		equ 00001100b   ; Display -on, Cursor - off, Blink - 0ff
+LCD_ON_DC:		equ 00001110b   ; Display -on, Cursor - on, Blink - off
+LCD_ON_DCB:		equ 00001111b   ; Display -on, Cursor - on, Blink - on
+
+		;Cursor movements
+LCD_CLR:		equ 00000001b	; CLear display, cursor to first line pos 0, (need 1,52 ms)
+LCD_HOME: 		equ 00000010B
+LCD_1_LINE: 	equ 10000000b	; Move cursor to second line position 0
+LCD_2_LINE:		equ 11000000b	; Move cursor to second line position 0
+LCD_CSHIFT_L:	equ 00010000b	; Shift cursor left
+LCD_CSHIFT_R:	equ	00010100b  	; Shift cursor right
+LCD_DSHIFT_L:	equ	00011000b  	; Shift display left
+LCD_DSHIFT_R:	equ	00011100b  	; Shift display right

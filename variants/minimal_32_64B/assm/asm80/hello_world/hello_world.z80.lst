@@ -1,0 +1,18 @@
+0000                             ; Hello world z80+Arduino minimal style
+0000                          .ORG   0   
+0000                START:       
+0000   3E 48                  LD   A,"H"   
+0002   32 0E 00               LD   (display1),A   ; Save into display area
+0005   3E 69                  LD   A,"i"   
+0007   32 0F 00               LD   (display2),A   ; Save into display area
+000A   76                     HALT      
+000E                          .ORG   0eh   
+000E                DISPLAY1:   DS   1   
+000F                DISPLAY2:   DS   1   
+
+
+START:              0000 DEFINED AT LINE 4
+DISPLAY1:           000E DEFINED AT LINE 12
+                    > USED AT LINE 6
+DISPLAY2:           000F DEFINED AT LINE 13
+                    > USED AT LINE 8

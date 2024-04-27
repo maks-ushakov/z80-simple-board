@@ -1,0 +1,30 @@
+; z80+Arduino Minimal-32B
+; Print message on LCD16x02 with loop
+org 0
+LCD_CMD: equ 0x00
+LCD_DAT: equ 0x01 
+setup:
+    ld hl, ctrl         ; pointer to commands array
+    ld b, 3             ; control command counter
+setLCD:
+    ld a, (hl)          ; load command from array
+    out (LCD_CMD), a    ; Send to LSD as command 
+    inc hl              ; next command pointer
+    djnz setLCD         ; counter--, if counter > 0, continue 
+    ; end setLCD
+
+    ld b, 6             ; b = msg.length
+print:
+    ld a, (hl)          ; load char from message
+    out (LCD_DAT), a    ; Send to LCD as DATA
+    inc hl              ; Next char
+    djnz print          ; counter--, continue while counter > 0
+    halt
+
+ctrl:
+    db 00000100b        ; Entry mode
+    db 00001111b        ; Display on
+    db 00000001b        ; clear
+
+msg:
+    db "Hello!"

@@ -1,0 +1,20 @@
+; z80+Arduino Minimal-32B
+; Print message on LCD16x02
+org 0
+LCD_CMD: equ 0x00
+LCD_DAT: equ 0x01
+start:
+    ld a, 00000100b ; Entry mode
+    out (LCD_CMD), a
+    ld a, 00001111b; Display on
+    out (LCD_CMD), a
+    ld a, 00000001b; clear
+    out (LCD_CMD), a
+print_message:
+    ld a, 'H'
+    out (LCD_DAT), a
+    ld a, 'i'
+    out (LCD_DAT), a
+    ld a, '!'
+    out (LCD_DAT), a
+    halt

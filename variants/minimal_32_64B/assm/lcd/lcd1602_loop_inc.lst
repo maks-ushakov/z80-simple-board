@@ -1,0 +1,64 @@
+# File lcd1602_loop_inc.z80
+0000			; z80+Arduino Minimal-32B 
+0000			; Print message on LCD16x02 with loop 
+0000			org 0 
+0000			 
+0000			include "lcd1602h.z80" 
+0000				; LCD Commands 
+0000			LCD_EMODE: 		equ 00000100b	; Entry mode set 
+0000					; Function set 
+0000			LCD_F_8b_1L_F8:  	equ 00110000b	; 8-bit mode, 1 display line, font 5x8 dots 
+0000			LCD_F_8b_2L_F8:  	equ 00111000b	; 8-bit mode, 2 display lines, font 5x8 dots 
+0000			LCD_F_8b_1L_F10:	equ 00110100b	; 8-bit mode, 1 line, font 5x10 
+0000			LCD_F_8b_2L_F10:	equ 00111100b	; 8-bit mode, 2 lines, font 5x10 
+0000			LCD_F_4b_1l_F8:		equ 00100000b	; 4-bit mode, 1 line, font 5x8 
+0000			LCD_F_4b_2l_F8:		equ 00101000b	; 4-bit mode, 2 lines, font 5x8 
+0000			LCD_F_4b_1l_F10:	equ 00100100b	; 4-bit mode, 2 lines, font 5x10 
+0000			LCD_F_4b_2l_F10:	equ 00101100b	; 4-bit mode, 2 lines, font 5x10 
+0000					;display on/off controld 
+0000			LCD_ON_D:		equ 00001100b   ; Display -on, Cursor - off, Blink - 0ff 
+0000			LCD_ON_DC:		equ 00001110b   ; Display -on, Cursor - on, Blink - off 
+0000			LCD_ON_DCB:		equ 00001111b   ; Display -on, Cursor - on, Blink - on 
+0000			 
+0000					;Cursor movements 
+0000			LCD_CLR:		equ 00000001b	; CLear display, cursor to first line pos 0, (need 1,52 ms) 
+0000			LCD_HOME: 		equ 00000010B 
+0000			LCD_1_LINE: 	equ 10000000b	; Move cursor to second line position 0 
+0000			LCD_2_LINE:		equ 11000000b	; Move cursor to second line position 0 
+0000			LCD_CSHIFT_L:	equ 00010000b	; Shift cursor left 
+0000			LCD_CSHIFT_R:	equ	00010100b  	; Shift cursor right 
+0000			LCD_DSHIFT_L:	equ	00011000b  	; Shift display left 
+0000			LCD_DSHIFT_R:	equ	00011100b  	; Shift display right 
+# End of file lcd1602h.z80
+0000			 
+0000			LCD_CMD: equ 0x00 
+0000			LCD_DAT: equ 0x01 
+0000			 
+0000			setup: 
+0000 21 14 00		    ld hl, ctrl         ; pointer to commands array 
+0003 06 04		    ld b, 4             ; control command counter 
+0005			setLCD: 
+0005 7e			    ld a, (hl)          ; load command from array 
+0006 d3 00		    out (LCD_CMD), a    ; Send to LSD as command  
+0008 23			    inc hl              ; next command pointer 
+0009 10 fa		    djnz setLCD         ; counter--, if counter > 0, continue  
+000b			    ; end setLCD 
+000b			 
+000b 06 06		    ld b, 6             ; b = msg.length 
+000d			print: 
+000d 7e			    ld a, (hl)          ; load char from message 
+000e d3 01		    out (LCD_DAT), a    ; Send to LCD as DATA 
+0010 23			    inc hl              ; Next char 
+0011 10 fa		    djnz print          ; counter--, continue while counter > 0 
+0013 76			    halt 
+0014			 
+0014			ctrl: 
+0014 04			    db LCD_EMODE  		; 
+0015 38			    db LCD_F_8b_2L_F8	; 2 lines 
+0016 0f			    db LCD_ON_DCB 		; Display -on, Cursor - on, Blink - on 
+0017 01				db LCD_CLR			; Clear display 
+0018			 
+0018			msg: 
+0018 ..			    db "Hello!" 
+# End of file lcd1602_loop_inc.z80
+001e

@@ -1,0 +1,16 @@
+; In a school, there are 542 girls and 387 boys.
+; How many pupils are there in that school?
+; 8080 friendly
+            .ORG    0 
+
+START:               
+            LD      hl,(girls)
+            ex      de, hl
+            LD      hl,(boys) 
+            ADD     hl, de
+            LD      (pupils),hl 
+            HALT     
+
+GIRLS:      DW      542 
+BOYS:       DW      387 
+PUPILS:     DS      2 ; reserv 2 byte for result

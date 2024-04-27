@@ -1,0 +1,21 @@
+# File lcd1602.zasm
+0000			org 0 
+0000			;ld c, 0; set port 0 / LCD Inst 
+0000			LCD_CMD: equ 0x00 
+0000			LCD_DAT: equ 0x01    
+0000 3e 04		ld a, 00000100b ; Entry mode 
+0002 d3 00		out (LCD_CMD), a 
+0004 3e 0f		ld a, 00001111b; Display on 
+0006 d3 00		out (LCD_CMD), a 
+0008 3e 01		ld a, 00000001b; clear 
+000a d3 00		out (LCD_CMD), a 
+000c			; Print message 
+000c 3e 48		ld a, 'H' 
+000e d3 01		out (LCD_DAT), a 
+0010 3e 69		ld a, 'i' 
+0012 d3 01		out (LCD_DAT), a 
+0014 3e 21		ld a, '!' 
+0016 d3 01		out (LCD_DAT), a 
+0018 76			halt 
+# End of file lcd1602.zasm
+0019

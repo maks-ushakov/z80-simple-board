@@ -1,0 +1,22 @@
+0000                             ; In a school, there are 542 girls and 387 boys.
+0000                             ; How many pupils are there in that school?
+0000                          .ORG   0   
+0000                GIRLS:    EQU   542   
+0000                BOYS:     EQU   387   
+0000                START:       
+0000   21 1E 02               LD   hl,GIRLS   
+0003   01 83 01               LD   bc,BOYS   
+0006   09                     ADD   hl,bc   
+0007   22 0B 00               LD   (PUPILS),hl   
+000A   76                     HALT      
+000B                PUPILS:   DS   2   ; reserv 2 byte for result
+
+
+GIRLS:              021E DEFINED AT LINE 6
+                    > USED AT LINE 10
+BOYS:               0183 DEFINED AT LINE 7
+                    > USED AT LINE 11
+START:              0000 DEFINED AT LINE 9
+PUPILS:             000B DEFINED AT LINE 16
+                    > USED AT LINE 13
+
