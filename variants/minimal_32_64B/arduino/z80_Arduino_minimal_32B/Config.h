@@ -6,11 +6,12 @@
 
 
 // memory size in bytes
-#define MEMORY_SIZE 16
+#define MEMORY_SIZE 32
 
 // use Main controller as memory device
 // Comment this out for using extermal memory
 #define CPU_MEMORY_MOCKED 1
+#define MEMORY_LINES 5
 
 // Uncommet next lines if you use multiplexer for adress lines
 // #define MEMORY_MOCK_MUX

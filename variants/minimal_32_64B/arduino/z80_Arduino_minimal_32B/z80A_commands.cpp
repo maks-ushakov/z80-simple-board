@@ -218,7 +218,7 @@ void Commands::pokeBytes() {
   }
 
   uint8_t dataLength = dataIndex;
-  for(int i = 0; i <= dataLength; i++) {
+  for(int i = 0; i < dataLength; i++) {
     memory->setByte(addr+i, data[i]);
   }
 }

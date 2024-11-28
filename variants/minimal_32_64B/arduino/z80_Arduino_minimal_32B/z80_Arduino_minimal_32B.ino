@@ -41,7 +41,7 @@ void debug_print(String, String, uint16_t, uint8_t, uint8_t);
 
 void setup() {
   cpu.init();
-  cpu.setClock(4);
+  cpu.setClock(4); // 4 -> about 100Hz
   memory.init(&cpu);
   mon.init(&memory);
   #if defined(CPU_IO_MOCKED)

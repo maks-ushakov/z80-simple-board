@@ -11,6 +11,8 @@
 #define IN_A1 A3
 #define IN_A2 A4
 #define IN_A3 A5
+#define IN_A4 2
+#define IN_A5 12
 
 #define F_HIGHT 1
 #define F_1M    1

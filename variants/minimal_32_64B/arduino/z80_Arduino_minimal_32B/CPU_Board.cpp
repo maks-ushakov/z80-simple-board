@@ -1,17 +1,19 @@
 #include "Arduino.h"
 #include "CPU_Board.h"
+#include "Config.h"
 
 CPUBoard::CPUBoard() {
-  control_pins[0] = IN_M1;
   control_pins[0] = IN_MREQ;
-  control_pins[0] = IN_RD;
-  control_pins[0] = IN_WR;
-  control_pins[0] = IN_IORQ;
+  control_pins[1] = IN_RD;
+  control_pins[2] = IN_WR;
+  control_pins[3] = IN_IORQ;
 
   addr_pins[0] = IN_A0;
   addr_pins[1] = IN_A1;
   addr_pins[2] = IN_A2;
   addr_pins[3] = IN_A3;
+  addr_pins[4] = IN_A4;
+  addr_pins[5] = IN_A5;
 };
 
 void CPUBoard::init() {
@@ -20,11 +22,11 @@ void CPUBoard::init() {
   pinMode(CLK_PIN, OUTPUT);
 
     // Set Address lines as input
-  for (uint8_t i; i < 4; i++) {
+  for (uint8_t i; i < MEMORY_LINES; i++) {
   	pinMode(addr_pins[i], INPUT);
   }
   // set Control lines as input
-  for (uint8_t i; i < 5; i++) {
+  for (uint8_t i; i < 4; i++) {
   	pinMode(control_pins[i], INPUT);
   }
   
@@ -63,7 +65,7 @@ void CPUBoard::setAsDataInput() {
  */ 
 uint8_t CPUBoard::getAddr() {
 	uint8_t addr = 0;
-  for(uint8_t i = 0; i < 4; i++) {
+  for(uint8_t i = 0; i < MEMORY_LINES; i++) {
     addr += digitalRead(addr_pins[i])<<i;
   }
   return addr;
