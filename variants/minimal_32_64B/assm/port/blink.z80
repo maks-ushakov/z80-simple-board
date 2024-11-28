@@ -1,0 +1,12 @@
+; Simple blink
+
+org 0
+
+PORT: equ 0
+
+loop:
+	ld A, 0x55
+	out (PORT), A
+	ld A, 0xAA
+	out (PORT), A
+	jp loop

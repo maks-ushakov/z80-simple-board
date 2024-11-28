@@ -1,0 +1,21 @@
+; 7 segment digits
+; h g f e d c b a
+
+org 0
+include "7seg_symbols_h.z80"
+PORT: equ 0
+
+start:
+	ld hl, digits  ; pointer to digit symbols array
+	ld b, 11
+loop:
+	ld A, (hl) ; load digit by pointer
+	out (PORT), A
+	inc hl    ; next digit
+	djnz loop ; b--, if b > 0, loop --> for (byte i=10; i > 0; i--) {}
+	jr start
+
+;  Digit symbols array
+digits:
+	db Zero, One, Two, Three, Four, Five
+	db Six, Seven, Eight, Nine, None

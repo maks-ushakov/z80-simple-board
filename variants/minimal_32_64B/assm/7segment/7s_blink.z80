@@ -1,0 +1,16 @@
+; 7 segment digits
+
+org 0
+
+PORT: equ 0
+
+; symbols and digits
+All_SegCA: equ 00000000B
+None_CA:   equ 11111111B
+
+start:
+	ld A, All_SegCA
+	out (PORT), A
+	ld A, None_CA
+	out (PORT), A
+	jr start

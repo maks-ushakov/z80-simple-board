@@ -1,0 +1,15 @@
+# File run2right.z80
+0000			; Running LED to left 
+0000			 
+0000			org 0 
+0000			 
+0000			PORT: equ 0 
+0000			 
+0000			start: 
+0000 3e 01			ld A, 0x01 
+0002			loop: 
+0002 d3 00			out (PORT), A 
+0004 0f				rrca 
+0005 c3 02 00			jp loop 
+# End of file run2right.z80
+0008

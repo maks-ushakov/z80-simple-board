@@ -1,0 +1,19 @@
+# File 7s_blink.z80
+0000			; 7 segment digits 
+0000			 
+0000			org 0 
+0000			 
+0000			PORT: equ 0 
+0000			 
+0000			; symbols and digits 
+0000			All_SegCA: equ 00000000B 
+0000			None_CA:   equ 11111111B 
+0000			 
+0000			start: 
+0000 3e 00			ld A, All_SegCA 
+0002 d3 00			out (PORT), A 
+0004 3e ff			ld A, None_CA 
+0006 d3 00			out (PORT), A 
+0008 18 f6			jr start 
+# End of file 7s_blink.z80
+000a

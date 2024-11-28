@@ -1,0 +1,15 @@
+# File blink.z80
+0000			; Simple blink 
+0000			 
+0000			org 0 
+0000			 
+0000			PORT: equ 0 
+0000			 
+0000			loop: 
+0000 3e 55			ld A, 0x55 
+0002 d3 00			out (PORT), A 
+0004 3e aa			ld A, 0xAA 
+0006 d3 00			out (PORT), A 
+0008 c3 00 00			jp loop 
+# End of file blink.z80
+000b

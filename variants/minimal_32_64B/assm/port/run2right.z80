@@ -1,0 +1,12 @@
+; Running LED to left
+
+org 0
+
+PORT: equ 0
+
+start:
+	ld A, 0x01
+loop:
+	out (PORT), A
+	rrca
+	jp loop

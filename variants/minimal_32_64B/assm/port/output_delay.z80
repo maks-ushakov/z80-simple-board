@@ -1,0 +1,18 @@
+; Simple output
+
+org 0
+
+PORT: equ 0
+
+start:
+	ld A, 0x55
+	out (PORT), A
+	nop
+	nop
+	nop
+	nop
+	nop
+
+	ld A, 0xAA
+	out (PORT), A
+	halt

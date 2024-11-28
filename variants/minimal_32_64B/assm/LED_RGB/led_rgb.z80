@@ -1,0 +1,22 @@
+; LED RGB and  simple 573 port
+;
+; 7 6 5 4 3 2 1 0
+; x x x x x B G R
+
+PORT: equ 0x00
+NONE:	equ 00000000 ; turn off
+RED:	equ 00000001
+GREEN:	equ 00000010 ; green
+BLUE:	equ 00000100 ; blue
+YELO:	equ 00000011 ; yellow
+PURPL:	equ 00000101 ; purple
+CYAN:	equ 00000110 ; 
+WHITE:	equ 00000111 ; white
+
+start:
+	ld a, WHITE
+loop:
+	out (PORT), a
+	dec a
+	jp NZ, loop
+	jp start

@@ -1,0 +1,15 @@
+# File output.z80
+0000			; Simple output 
+0000			 
+0000			org 0 
+0000			 
+0000			PORT: equ 0 
+0000			 
+0000			start: 
+0000 3e 55			ld A, 0x55 
+0002 d3 00			out (PORT), A 
+0004 3e aa			ld A, 0xAA 
+0006 d3 00			out (PORT), A 
+0008 76				halt 
+# End of file output.z80
+0009

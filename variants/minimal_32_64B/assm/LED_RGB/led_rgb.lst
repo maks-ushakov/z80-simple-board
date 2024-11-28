@@ -1,0 +1,25 @@
+# File led_rgb.z80
+0000			; LED RGB and  simple 573 port 
+0000			; 
+0000			; 7 6 5 4 3 2 1 0 
+0000			; x x x x x B G R 
+0000			 
+0000			PORT: equ 0x00 
+0000			NONE:	equ 00000000 ; turn off 
+0000			RED:	equ 00000001 
+0000			GREEN:	equ 00000010 ; green 
+0000			BLUE:	equ 00000100 ; blue 
+0000			YELO:	equ 00000011 ; yellow 
+0000			PURPL:	equ 00000101 ; purple 
+0000			CYAN:	equ 00000110 ;  
+0000			WHITE:	equ 00000111 ; white 
+0000			 
+0000			start: 
+0000 3e 49			ld a, WHITE 
+0002			loop: 
+0002 d3 00			out (PORT), a 
+0004 3d				dec a 
+0005 c2 02 00			jp NZ, loop 
+0008 c3 00 00			jp start 
+# End of file led_rgb.z80
+000b

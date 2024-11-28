@@ -1,0 +1,48 @@
+# File digits.z80
+0000			; 7 segment digits 
+0000			; h g f e d c b a 
+0000			 
+0000			org 0 
+0000			include "7seg_symbols_h.z80" 
+0000			; 7 segment digits 
+0000			; h g f e d c b a 
+0000			  
+0000			 
+0000			;   a 
+0000			; f   b  
+0000			;   g 
+0000			; e   c 
+0000			;   d   h 
+0000			 
+0000			; symbols and digits 
+0000			All_Seg: equ 00000000B 
+0000			None:   equ 11111111B 
+0000			Zero:   equ 11000000B 
+0000			One:    equ 11111001B 
+0000			Two:    equ 10100100B 
+0000			Three:  equ 10110000B 
+0000			Four:   equ 10011001B 
+0000			Five:   equ 10010010B 
+0000			Six:    equ 10000010B 
+0000			Seven:  equ 11111000B 
+0000			Eight:  equ 10000000B 
+0000			Nine:   equ 10010000B 
+# End of file 7seg_symbols_h.z80
+0000			PORT: equ 0 
+0000			 
+0000			start: 
+0000 21 0d 00			ld hl, digits  ; pointer to digit symbols array 
+0003 06 0b			ld b, 11 
+0005			loop: 
+0005 7e				ld A, (hl) ; load digit by pointer 
+0006 d3 00			out (PORT), A 
+0008 23				inc hl    ; next digit 
+0009 10 fa			djnz loop ; b--, if b > 0, loop --> for (byte i=10; i > 0; i--) {} 
+000b 18 f3			jr start 
+000d			 
+000d			;  Digit symbols array 
+000d			digits: 
+000d c0 f9 a4 b0 99 92		db Zero, One, Two, Three, Four, Five 
+0013 82 f8 80 90 ff		db Six, Seven, Eight, Nine, None 
+# End of file digits.z80
+0018

@@ -1,0 +1,23 @@
+; 7 segment digits
+; h g f e d c b a
+ 
+
+;   a
+; f   b 
+;   g
+; e   c
+;   d   h
+
+; symbols and digits
+All_Seg: equ 00000000B
+None:   equ 11111111B
+Zero:   equ 11000000B
+One:    equ 11111001B
+Two:    equ 10100100B
+Three:  equ 10110000B
+Four:   equ 10011001B
+Five:   equ 10010010B
+Six:    equ 10000010B
+Seven:  equ 11111000B
+Eight:  equ 10000000B
+Nine:   equ 10010000B

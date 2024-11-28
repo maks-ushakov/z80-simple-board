@@ -1,0 +1,30 @@
+# File rainbow.z80
+0000			; LED RGB and  simple 573 port 
+0000			; 
+0000			; 7 6 5 4 3 2 1 0 
+0000			; x x x x x B G R 
+0000			 
+0000			PORT: equ 0x00 
+0000			NONE:	equ 00000000B ; turn off 
+0000			RED:	equ 00000001B 
+0000			GREEN:	equ 00000010B ; green 
+0000			BLUE:	equ 00000100B ; blue 
+0000			YELO:	equ 00000011B ; yellow 
+0000			PURPL:	equ 00000101B ; purple 
+0000			CYAN:	equ 00000110B ;  
+0000			WHITE:	equ 00000111B ; white 
+0000			 
+0000			start: 
+0000 21 0e 00			ld HL, RAINBOW 
+0003 06 07			ld B, 7 
+0005			loop: 
+0005 7e				ld A, (HL) 
+0006 23				inc HL 
+0007 d3 00			out (PORT), A 
+0009 10 fa			djnz loop 
+000b c3 00 00			jp start 
+000e			 
+000e			RAINBOW: 
+000e 01 03 02 06 04 05 00	       db RED, YELO, GREEN, CYAN, BLUE, PURPL, NONE 
+# End of file rainbow.z80
+0015
